@@ -238,11 +238,11 @@ public class OceanRuinGenerator {
             int j2 = bPos.getZ();
             int k2 = templatePos.getY() - 1;
             BPos mutable = new BPos(i2,j2,k2);
-            Block block = otg.getBlockAt(mutable).get();
-            for(Block b = otg.getBlockAt(mutable).get(); (block.equals(Blocks.AIR) || b.equals(Blocks.WATER)) && k2 > 1; b = otg.getBlockAt(mutable).get()) {
+            Block block = otg.getBlockAt(mutable).orElse(Blocks.AIR);
+            for(Block b = otg.getBlockAt(mutable).orElse(Blocks.AIR); (block.equals(Blocks.AIR) || b.equals(Blocks.WATER)) && k2 > 1; b = otg.getBlockAt(mutable).orElse(Blocks.AIR)) {
                 --k2;
                 mutable = new BPos(i2,j2,k2);
-                block = otg.getBlockAt(mutable).get();
+                block = otg.getBlockAt(mutable).orElse(Blocks.AIR);
             }
             j1 = Math.min(j1, k2);
             if (k2 < k1 - 2) {
